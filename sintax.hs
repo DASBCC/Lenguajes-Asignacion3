@@ -13,6 +13,10 @@ data Proposicion =
     -- Se declara que pueda acceder a los usos de los tipos de clases Eq y Show
     -- Permite hacer uso de ==, /= y Show
 
+infix ~:
+(~:) :: Proposicion -> Proposicion
+(~:) = Negacion 
+
 infixl 7 &&:
 (&&:) :: Proposicion -> Proposicion -> Proposicion
 prop1 &&: prop2 = Conjuncion prop1 prop2
