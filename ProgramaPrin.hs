@@ -4,6 +4,7 @@ import Sintax
 import GenBools
 import AsVals
 import EvalProp
+import Taut
 
 
 p = Variable "p"
