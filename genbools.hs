@@ -1,6 +1,4 @@
-module Gen_bools where
-import Sintax
-import Vars
+module GenBools where
 import Data.Map (Map)
 
 --Construye una lista curryficada
