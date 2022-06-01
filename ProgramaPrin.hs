@@ -5,8 +5,13 @@ import GenBools
 import AsVals
 import EvalProp
 import Taut
+import Bonita
 
 
 p = Variable "p"
 q = Variable "q"
-prueba = (p ||: (~:) p) &&: (q ||: (~:)q)
+r = Variable "r"
+
+prueba1 = p =>: q
+prueba2 = (p ||: (~:) p) &&: (q ||: (~:)q)
+prueba3 = (((~:) p ||: q) =>: (r ||: p)) ||: (p =>: q)
