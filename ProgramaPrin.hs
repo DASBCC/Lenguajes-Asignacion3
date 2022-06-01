@@ -6,7 +6,7 @@ import AsVals
 import EvalProp
 import Taut
 import Bonita
-
+import Fnc
 
 p = Variable "p"
 q = Variable "q"
