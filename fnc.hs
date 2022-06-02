@@ -3,9 +3,10 @@ module Fnc where
 import Sintax
 
 --IMPLICACIÓN Y DISYUNCIÓN
-id (Implicacion prop1 prop2) = Disyuncion (Negacion prop1) prop2
+imd (Implicacion prop1 prop2) = Disyuncion (Negacion prop1) prop2
+
 --CASO INVERSO
-id (Disyuncion (Negacion prop1) prop2) = Implicacion prop1 prop2
+imd (Disyuncion (Negacion prop1) prop2) = Implicacion prop1 prop2
 --CONTRAPOSITIVA
 contraPositiva (Implicacion prop1 prop2) = Implicacion (Negacion prop2) (Negacion prop1)
 --CASO INVERSO
