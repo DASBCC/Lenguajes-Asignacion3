@@ -30,9 +30,9 @@ taut prop =
         variables =  vars prop
         n = length variables
         lista_combinaciones_booleanas = gen_bools n
-        result = recorrer prop lista_combinaciones_booleanas
+        resultado = recorrer prop lista_combinaciones_booleanas
     in
-        if result == []
+        if resultado == []
             then imprimir prop ++ "  es una tautologia "
         else
-            imprimir prop ++ "  no es una tautologia, por que  " ++ show (as_vals variables (head result))
+            imprimir prop ++ "  no es una tautologia, por que  " ++ show (as_vals variables (head resultado))
