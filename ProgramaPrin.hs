@@ -19,4 +19,5 @@ prueba1 = p =>: q
 prueba2 = (p ||: (~:) p) &&: (q ||: (~:)q)
 prueba3 = (((~:) p ||: q) =>: (r ||: p)) ||: (p =>: q)
 prueba4 = ((~:) p ||: q) =>: ((~:) q &&: p)
+prueba5 = (p =>: (q ||: r)) <=>: ((~:)p &&: r)
 pruebaequivlog = (~:)(((~:) p &&: (~:) q) &&: ((~:)q =>: r)) &&: ((~:) r =>: p)
