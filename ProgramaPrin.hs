@@ -1,4 +1,4 @@
-module Pruebas where
+module ProgramaPrin where
 import Vars
 import Sintax
 import GenBools
@@ -6,17 +6,17 @@ import AsVals
 import EvalProp
 import Taut
 import Bonita
-import Fnc
+--import PruebaFNC
+--import EquivLog
+import FNC
 
-import PruebaFNC
 p = Variable "p"
+q :: Proposicion
 q = Variable "q"
 r = Variable "r"
 
 prueba1 = p =>: q
 prueba2 = (p ||: (~:) p) &&: (q ||: (~:)q)
 prueba3 = (((~:) p ||: q) =>: (r ||: p)) ||: (p =>: q)
-
-pruebafnc = (~:)(((~:) p &&: (~:) q) &&: ((~:)q =>: r)) &&: ((~:) r =>: p)
-
-prueba (Disyuncion prop1 prop2) = Disyuncion prop1 (dis prop2)
+prueba4 = ((~:) p ||: q) =>: ((~:) q &&: p)
+pruebaequivlog = (~:)(((~:) p &&: (~:) q) &&: ((~:)q =>: r)) &&: ((~:) r =>: p)
