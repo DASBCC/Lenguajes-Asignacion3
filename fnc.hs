@@ -54,7 +54,7 @@ fnc prop =
         resultado = recorrer prop lista_combinaciones_booleanas 1 (length lista_combinaciones_booleanas)
         --Llamada a recorrer, definiendo contador en 1
     in
-       if (resultado == "")
-           then show "No hay una FNC de la proposicion dada, ya que es una Tautologia"
+       if resultado == ""
+           then "No hay una FNC de la proposicion dada, ya que es una Tautologia"
        else
            resultado
