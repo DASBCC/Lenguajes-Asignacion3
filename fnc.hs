@@ -55,6 +55,6 @@ fnc prop =
         --Llamada a recorrer, definiendo contador en 1
     in
        if (resultado == "")
-           then show "No hay una FNC de la proposición dada, ya que es una Tautología"
+           then show "No hay una FNC de la proposicion dada, ya que es una Tautologia"
        else
            resultado
