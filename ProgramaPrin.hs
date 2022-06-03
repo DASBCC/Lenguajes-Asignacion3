@@ -11,7 +11,6 @@ import Bonita
 import FNC
 
 p = Variable "p"
-q :: Proposicion
 q = Variable "q"
 r = Variable "r"
 

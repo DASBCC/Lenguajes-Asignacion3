@@ -67,9 +67,56 @@ dom (Conjuncion prop1 (Constante False)) = Constante False
 dom (Disyuncion prop1 (Constante True)) = Constante True
 
 --ABSORCIÓN
-abs (Disyuncion prop1 (Conjuncion prop2 prop3)) = if (prop1 == prop2) then prop1 else Disyuncion prop1 (Conjuncion prop2 prop3)
-abs (Conjuncion prop1 (Disyuncion prop2 prop3)) = if (prop1 == prop2) then prop1 else Conjuncion prop1 (Disyuncion prop2 prop3)
+--abs (Disyuncion prop1 (Conjuncion prop2 prop3)) = if (prop1 == prop2) then prop1 else Disyuncion prop1 (Conjuncion prop2 prop3)
+--abs (Conjuncion prop1 (Disyuncion prop2 prop3)) = if (prop1 == prop2) then prop1 else Conjuncion prop1 (Disyuncion prop2 prop3)
 
 --EXPORTACIÓN
 exp (Implicacion prop1 (Implicacion prop2 prop3)) = Implicacion (Conjuncion prop1 prop2) prop3
 --NOTA COLOCAR FALSE EN LOS ELSE PARA SABER QUE LA EVALUACIÓN DEBE CONTINUAR
+
+
+absorcion (Disyuncion prop1 (Conjuncion prop2 prop3)) = if (prop1 == prop2 || prop1 == prop3) then prop1 else Disyuncion (simplProp prop1) (Conjuncion (simplProp prop2) (simplProp prop3)) -- P v (P ^ Q) --- P v (Q ^ P)
+absorcion (Disyuncion (Conjuncion prop1 prop2) prop3) = if (prop1 == prop3 || prop2 == prop3) then prop1 else Disyuncion (Conjuncion (simplProp prop2) (simplProp prop3)) (simplProp prop1) -- (P ^ Q) v P --- (Q ^ P) v P
+absorcion (Conjuncion prop1 (Disyuncion prop2 prop3)) = if (prop1 == prop2 || prop1 == prop3) then prop1 else Conjuncion (simplProp prop1) (Disyuncion (simplProp prop2) (simplProp prop3)) -- P ^ (P v Q) --- P ^ (Q v P)
+absorcion (Conjuncion (Disyuncion prop1 prop2) prop3) = if (prop1 == prop3 || prop2 == prop3) then prop3 else Conjuncion (simplProp prop1) (Disyuncion (simplProp prop2) (simplProp prop3)) -- (P v Q) ^ P --- (Q v P) ^ P
+
+
+simplProp prop =
+    case prop of
+        (Disyuncion prop1 (Conjuncion prop2 prop3)) -> --ABSORCIÓN REGLAS 1 Y 2
+            absorcion prop
+        (Disyuncion (Conjuncion prop1 prop2) prop3) -> --ABSORCIÓN REGLAS 3 Y 4
+            absorcion prop
+        (Conjuncion prop1 (Disyuncion prop2 prop3)) -> --ABSORCIÓN REGLAS 5 Y 6
+            absorcion prop
+        (Conjuncion (Disyuncion prop1 prop2) prop3) -> --ABSORCIÓN REGLAS 7 Y 8
+            absorcion prop
+        _ -> prop
+
+simpl prop =
+    let
+        newProp = simplProp prop
+    in
+       if prop == newProp
+           then prop
+       else
+           simpl newProp
+
+
+p = Variable "p"
+q = Variable "q"
+r = Variable "r"
+p1 = p ||: (p &&: q)
+p2 = p ||: (q &&: p)
+p3 = (p &&: q) ||: p
+p4 = (q &&: p) ||: p
+p5 = p &&: (p ||: q)
+p6 = p &&: (q ||: p)
+p7 = (p ||: q) &&: p
+p8 = (q ||: p) &&: p
+p9 = p ||: (((r ||: q) &&: r) &&: p)
+
+
+
+--abs (Disyuncion prop1 (Conjuncion prop2 prop3)) = if (prop1 == prop2) then prop1 else Disyuncion prop1 (Conjuncion prop2 prop3)
+--abs (Conjuncion prop1 (Disyuncion prop2 prop3)) = if (prop1 == prop2) then prop1 else Conjuncion prop1 (Disyuncion prop2 prop3)
