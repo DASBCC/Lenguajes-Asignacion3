@@ -6,7 +6,6 @@ import AsVals
 import EvalProp
 import Taut
 import Bonita
---import PruebaFNC
 import Simpl
 import FNC
 
