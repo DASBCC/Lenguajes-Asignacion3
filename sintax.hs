@@ -37,11 +37,11 @@ prop1 <=>: prop2 = Equivalencia prop1 prop2
 imprimir :: Proposicion -> [Char]
 imprimir prop =
   case prop of
-    (Constante False)          -> "false"
-    (Constante True)           -> "true"
+    (Constante False)          -> "False"
+    (Constante True)           -> "True"
     (Variable nombre)          -> nombre
-    (Negacion prop1)           -> "negacion (" ++ imprimir  prop1 ++ ")"
-    (Conjuncion prop1 prop2)   -> "conjuncion (" ++ imprimir prop1 ++ ", " ++ imprimir prop2 ++ ")"
-    (Disyuncion prop1 prop2)   -> "disyuncion (" ++ imprimir prop1 ++ ", " ++ imprimir prop2 ++ ")"
-    (Implicacion prop1 prop2)  -> "implicacion (" ++ imprimir prop1 ++ ", " ++ imprimir prop2 ++ ")"
-    (Equivalencia prop1 prop2) -> "equivalencia (" ++ imprimir prop1 ++ ", " ++ imprimir prop2 ++ ")"
+    (Negacion prop1)           -> "Negacion (" ++ imprimir  prop1 ++ ")"
+    (Conjuncion prop1 prop2)   -> "Conjuncion (" ++ imprimir prop1 ++ ", " ++ imprimir prop2 ++ ")"
+    (Disyuncion prop1 prop2)   -> "Disyuncion (" ++ imprimir prop1 ++ ", " ++ imprimir prop2 ++ ")"
+    (Implicacion prop1 prop2)  -> "Implicacion (" ++ imprimir prop1 ++ ", " ++ imprimir prop2 ++ ")"
+    (Equivalencia prop1 prop2) -> "Equivalencia (" ++ imprimir prop1 ++ ", " ++ imprimir prop2 ++ ")"

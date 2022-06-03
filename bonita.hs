@@ -16,8 +16,8 @@ revisarCon _ = False;
 bonita prop = 
     case prop of
         (Variable var)           -> var
-        (Constante False)        -> "false"
-        (Constante True)         -> "true"
+        (Constante False)        -> "False"
+        (Constante True)         -> "True"
         (Negacion prop1)         -> "~ " ++ bonita prop1
     --Caso de paréntesis necesarios
         (Conjuncion prop1 prop2) ->
