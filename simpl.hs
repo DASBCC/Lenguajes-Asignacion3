@@ -1,4 +1,4 @@
-module EquivLog where
+module Simpl where
 
 import Sintax
 
@@ -58,22 +58,3 @@ simpl prop =
            then prop
        else
            simpl newProp
-
-
-p = Variable "p"
-q = Variable "q"
-r = Variable "r"
-p1 = p ||: (p &&: q)
-p2 = p ||: (q &&: p)
-p3 = (p &&: q) ||: p
-p4 = (q &&: p) ||: p
-p5 = p &&: (p ||: q)
-p6 = p &&: (q ||: p)
-p7 = (p ||: q) &&: p
-p8 = (q ||: p) &&: p
-p9 = p ||: (((r ||: q) &&: r) &&: p)
-
-
-
---abs (Disyuncion prop1 (Conjuncion prop2 prop3)) = if (prop1 == prop2) then prop1 else Disyuncion prop1 (Conjuncion prop2 prop3)
---abs (Conjuncion prop1 (Disyuncion prop2 prop3)) = if (prop1 == prop2) then prop1 else Conjuncion prop1 (Disyuncion prop2 prop3)

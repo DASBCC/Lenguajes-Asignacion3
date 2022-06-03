@@ -7,7 +7,7 @@ import EvalProp
 import Taut
 import Bonita
 --import PruebaFNC
---import EquivLog
+import Simpl
 import FNC
 
 p = Variable "p"
@@ -20,3 +20,15 @@ prueba3 = (((~:) p ||: q) =>: (r ||: p)) ||: (p =>: q)
 prueba4 = ((~:) p ||: q) =>: ((~:) q &&: p)
 prueba5 = (p =>: (q ||: r)) <=>: ((~:)p &&: r)
 pruebaequivlog = (~:)(((~:) p &&: (~:) q) &&: ((~:)q =>: r)) &&: ((~:) r =>: p)
+
+--PRUEBAS PARA SIMPL
+
+p1 = p ||: (p &&: q)
+p2 = p ||: (q &&: p)
+p3 = (p &&: q) ||: p
+p4 = (q &&: p) ||: p
+p5 = p &&: (p ||: q)
+p6 = p &&: (q ||: p)
+p7 = (p ||: q) &&: p
+p8 = (q ||: p) &&: p
+p9 = p ||: (((r ||: q) &&: r) &&: p)
