@@ -53,8 +53,11 @@ simplProp prop =
 simpl prop =
     let
         newProp = simplProp prop
+        --evaluación número n de la proposición
     in
        if prop == newProp
+           --si no varía la proposición, se llegó a la forma más simplificada
            then prop
        else
+           --si no, se vuelve a ejecutar
            simpl newProp
