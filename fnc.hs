@@ -16,7 +16,7 @@ impFnc ((v,b) : vbs) largo i =  if i < largo then (if b then "~" else "") ++ v +
 unificarFNC _ [] _ = ""
 unificarFNC vars bools cantV = "(" ++ impFnc (as_vals vars bools) cantV 1
 
-
+--Recorre la lista de combinaciones booleanas, generando asociaciones y evaluando las combinaciones
 recorrer :: Proposicion -> [[Bool]] -> Int -> Int -> [Char]
 recorrer _ [] _  _                = ""
 recorrer prop listaBools i largoListComb =
@@ -25,7 +25,6 @@ recorrer prop listaBools i largoListComb =
             n = length variables
             asociacion = as_vals variables (head listaBools)
             evaluacion_es_verdadera = evalProp asociacion prop
-            
             --Contexto definido y evaluado
         in
             if not evaluacion_es_verdadera then
@@ -39,10 +38,7 @@ recorrer prop listaBools i largoListComb =
                 recorrer prop (drop 1 listaBools) (i+1) largoListComb
                 --siguiente elemento
 
---Genera la forma normal disyuntiva de una proposición
-
-
-
+--Genera la forma normal conjuntiva de una proposición
 fnc :: Proposicion -> [Char]
 fnc prop =
     let
@@ -52,7 +48,7 @@ fnc prop =
         --Arriba se definen las variables a utilizar
         --Recorrer recorre el total de combinaciones
         resultado = recorrer prop lista_combinaciones_booleanas 1 (length lista_combinaciones_booleanas)
-        --Llamada a recorrer, definiendo contador en 1
+        --Llamada a recorrer, definiendo contador en 1 y almacenando el resultado en resultado
     in
        if resultado == ""
            then "No hay una FNC de la proposicion dada, ya que es una Tautologia"
