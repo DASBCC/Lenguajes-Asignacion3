@@ -5,9 +5,9 @@ import Sintax
 --ABSORCIÓN
 
 absorcion (Disyuncion prop1 (Conjuncion prop2 prop3)) = if (prop1 == prop2 || prop1 == prop3) then prop1 else Disyuncion (simplProp prop1) (Conjuncion (simplProp prop2) (simplProp prop3)) -- P v (P ^ Q) --- P v (Q ^ P)
-absorcion (Disyuncion (Conjuncion prop1 prop2) prop3) = if (prop1 == prop3 || prop2 == prop3) then prop1 else Disyuncion (Conjuncion (simplProp prop2) (simplProp prop3)) (simplProp prop1) -- (P ^ Q) v P --- (Q ^ P) v P
+absorcion (Disyuncion (Conjuncion prop1 prop2) prop3) = if (prop1 == prop3 || prop2 == prop3) then prop3 else Disyuncion (Conjuncion (simplProp prop1) (simplProp prop2)) (simplProp prop3) -- (P ^ Q) v P --- (Q ^ P) v P
 absorcion (Conjuncion prop1 (Disyuncion prop2 prop3)) = if (prop1 == prop2 || prop1 == prop3) then prop1 else Conjuncion (simplProp prop1) (Disyuncion (simplProp prop2) (simplProp prop3)) -- P ^ (P v Q) --- P ^ (Q v P)
-absorcion (Conjuncion (Disyuncion prop1 prop2) prop3) = if (prop1 == prop3 || prop2 == prop3) then prop3 else Conjuncion (simplProp prop1) (Disyuncion (simplProp prop2) (simplProp prop3)) -- (P v Q) ^ P --- (Q v P) ^ P
+absorcion (Conjuncion (Disyuncion prop1 prop2) prop3) = if (prop1 == prop3 || prop2 == prop3) then prop3 else Conjuncion (Disyuncion (simplProp prop1) (simplProp prop2)) (simplProp prop3) -- (P v Q) ^ P --- (Q v P) ^ P
 
 --DOMINACIÓN
 dominacion (Conjuncion prop1 (Constante False)) = Constante False -- P ^ False
