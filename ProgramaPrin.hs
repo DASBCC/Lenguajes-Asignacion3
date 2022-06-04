@@ -13,11 +13,12 @@ p = Variable "p"
 q = Variable "q"
 r = Variable "r"
 
-prueba1 = p =>: q
-prueba2 = (p ||: (~:) p) &&: (q ||: (~:)q)
-prueba3 = (((~:) p ||: q) =>: (r ||: p)) ||: (p =>: q)
-prueba4 = ((~:) p ||: q) =>: ((~:) q &&: p)
-prueba5 = (p =>: (q ||: r)) <=>: ((~:)p &&: r)
+
+--CASOS DE PRUEBA FNC Y BONITA
+prueba1 = (p ||: (~:) p) &&: (q ||: (~:)q)
+prueba2 = (((~:) p ||: q) =>: (r ||: p)) ||: (p =>: q)
+prueba3 = ((~:) p ||: q) =>: ((~:) q &&: p)
+prueba4 = (p =>: (q ||: r)) <=>: ((~:)p &&: r)
 pruebaequivlog = (~:)(((~:) p &&: (~:) q) &&: ((~:)q =>: r)) &&: ((~:) r =>: p)
 
 --PRUEBAS PARA SIMPL
